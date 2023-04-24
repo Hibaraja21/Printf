@@ -42,7 +42,7 @@ int print_int(va_list ap, params_t *params)
 		ll = (short int)va_arg(ap, int);
 	else
 		ll = (int)va_arg(ap, int);
-	return (print_number(convert(l, 10, 0, params), params));
+	return (print_n(convert(ll, 10, 0, params), params));
 }
 
 /**
@@ -73,7 +73,7 @@ int print_string(va_list ap, params_t *params)
 	if (params->minus_f)
 	{
 		if (params->precision != UINT_MAX)
-			for (a = 0; a < pad; a++)
+			for (a = 0; a < pa; a++)
 				su += _putchar(*s++);
 		else
 			su += _puts(s);
@@ -83,7 +83,7 @@ int print_string(va_list ap, params_t *params)
 	if (!params->minus_f)
 	{
 		if (params->precision != UINT_MAX)
-			for (a = 0; a < pad; a++)
+			for (a = 0; a < pa; a++)
 				su += _putchar(*s++);
 		else
 			su += _puts(s);
@@ -103,7 +103,7 @@ int print_string(va_list ap, params_t *params)
 
 int print_percent(va_list ap, params_t *params)
 {
-	(void)app;
+	(void)ap;
 	(void)params;
 	return (_putchar('%'));
 }

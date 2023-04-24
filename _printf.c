@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	int s = 0;
 	va_list app;
 	char *ap, *start;
-	params_t params = PARAMS_INIT;
+	params_t params = PARAMS_I;
 
 	va_start(app, format);
 
@@ -35,12 +35,12 @@ int _printf(const char *format, ...)
 			ap++; /* next char */
 		}
 		ap = get_w(ap, &params, app);
-		ap = get_precision(p, &params, ap);
+		ap = get_precision(ap, &params, app);
 		if (get_mod(ap, &params))
 			ap++;
 		if (!get_spec(ap))
 			s += print_from_to(start, ap,
-				params.li_modifier || params.he_modifier ? ap - 1 : 0);
+				params.le_modifier || params.hi_modifier ? ap - 1 : 0);
 		else
 			s += get_print_f(ap, app, &params);
 	}

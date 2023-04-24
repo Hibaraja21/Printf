@@ -12,20 +12,20 @@
  */
 char *convert(long int num, int base, int flags, params_t *params)
 {
-	static char *array;
+	static char *arr;
 	static char buffer[50];
 	char sig = 0;
 	char *pointer;
 	unsigned long m = num;
 	(void)params;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(flags & CONVERT_U) && num < 0)
 	{
 		m = -num;
 		sig = '-';
 
 	}
-	arr = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	arr = flags & CONVERT_L ? "0123456789abcdef" : "0123456789ABCDEF";
 	pointer = &buffer[49];
 	*pointer = '\0';
 
@@ -59,7 +59,7 @@ int print_unsigned(va_list ap, params_t *params)
 	else
 		ll = (unsigned int)va_arg(ap, unsigned int);
 	params->unsign = 1;
-	return (print_number(convert(l, 10, CONVERT_UNSIGNED, params), params));
+	return (print_n(convert(ll, 10, CONVERT_U, params), params));
 }
 
 
@@ -80,8 +80,8 @@ int print_address(va_list ap, params_t *params)
 	if (!m)
 		return (_puts("(nil)"));
 
-	string = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
+	string = convert(m, 16, CONVERT_U | CONVERT_L, params);
 	*--string = 'x';
 	*--string = '0';
-	return (print_number(str, params));
+	return (print_n(string, params));
 }
