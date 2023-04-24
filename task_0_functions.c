@@ -38,7 +38,7 @@ int print_string_task0(va_list args)
 
 	if (s == NULL)
 	{
-		s = "(null)";
+		s = "(null)\n";
 	}
 
 	while (s[len] != '\0')
