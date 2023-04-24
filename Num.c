@@ -52,9 +52,9 @@ int print_unsigned(va_list ap, params_t *params)
 {
 	unsigned long ll;
 
-	if (params->li_modifier)
+	if (params->le_modifier)
 		ll = (unsigned long)va_arg(ap, unsigned long);
-	else if (params->he_modifier)
+	else if (params->hi_modifier)
 		ll = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		ll = (unsigned int)va_arg(ap, unsigned int);
