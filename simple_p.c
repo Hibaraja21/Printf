@@ -38,7 +38,7 @@ int print_rev(va_list appointer, params_t *params)
 
 	switch ((int)(!*s))
 			case 1:
-				*s = NULL_STR;
+				*s = '\0';
 	if (s)
 	{
 		for (length = 0; *s; s++)
